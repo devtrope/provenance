@@ -2,6 +2,7 @@
 
 use PHPUnit\Framework\TestCase;
 use Provenance\CheckCommit;
+use Provenance\Git\Commit;
 
 final class CommitTest extends TestCase
 {
@@ -14,13 +15,13 @@ final class CommitTest extends TestCase
 
     public function testCanSpotAnAICommit(): void
     {
-        $commit = "Co-Authored-By: Claude Sonnet 5";
-        $this->assertSame(['message' => 'AI used', 'tool' => 'claude'], $this->checkCommit->check($commit));
+        $commit = new Commit('1234', "Co-Authored-By: Claude Sonnet 5");
+        $this->assertSame(['hash' => '1234', 'tool' => 'claude'], $this->checkCommit->check($commit));
     }
 
     public function testCanSpotAHumanCommit(): void
     {
-        $commit = "Just a simple human commit";
+        $commit = new Commit('', "Just a simple human commit");
         $this->assertSame([], $this->checkCommit->check($commit));
     }
 }
