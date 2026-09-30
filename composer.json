@@ -1,0 +1,10 @@
+{
+    "name": "devtrope/provenance",
+    "type": "library",
+    "description": "Enforce your project's AI contribution policy: check commit trailers, tool files and attestations from a git hook or your CI",
+    "autoload": {
+        "psr-4": {
+            "Provenance\\": "src/"
+        }
+    }
+}
